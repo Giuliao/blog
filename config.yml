@@ -1,0 +1,37 @@
+baseURL: "http://example.org/"
+languageCode: "zh-cn"
+title: "Giuliao"
+theme: PaperMod
+
+
+menu:
+  main:
+      - name: Archive
+        url: archives
+        weight: 5
+      - name: Search
+        url: search/
+        weight: 10
+      - name: Tags
+        url: tags/
+        weight: 10
+
+params:
+    homeInfoParams:
+        Title: Hi👋 there, I' m Giuliao
+        Content: Can be Info, links, about...
+
+    socialIcons: # optional
+      - name: email
+        address: "wangguang16@outlook.com"
+      - name: github
+        url: "https://github.com/giuliao"
+    ShowReadingTime: true
+
+    outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON # is necessary
+    ShowToc: true
+    ShowBreadCrumbs: true
