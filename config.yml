@@ -1,37 +1,55 @@
 baseURL: "https://giuliao.github.io/blog/"
-languageCode: "zh-cn"
 title: "Giuliao"
-theme: PaperMod
+theme: PaperMod  
 
 
 menu:
-  main:
-      - name: Archive
-        url: archives
-        weight: 5
-      - name: Search
-        url: search/
-        weight: 10
-      - name: Tags
-        url: tags/
-        weight: 10
+    main:
+        - name: 归档
+          url: archives
+          weight: 5
+        - name: 搜索
+          url: search/
+          weight: 10
+        - name: 标签
+          url: tags/
+          weight: 10
+
+minify:
+  disableXML: true
+
+
+outputs:
+      home:
+        - HTML
+        - RSS
+        - JSON # is necessary 
 
 params:
     homeInfoParams:
         Title: Hi👋 there, I' m Giuliao
-        Content: Can be Info, links, about...
+        Content: 安静沉淀，厚积薄发
 
     socialIcons: # optional
       - name: email
-        address: "wangguang16@outlook.com"
+        url: "mailto: wangguang16@outlook.com"
       - name: github
         url: "https://github.com/giuliao"
     ShowReadingTime: true
+    ShowCodeCopyButtons: true
+    ShowPostNavLinks: true
 
-    outputs:
-    home:
-        - HTML
-        - RSS
-        - JSON # is necessary
+    assets:
+      favicon: "favicon.ico"
+
+    
     ShowToc: true
     ShowBreadCrumbs: true
+    fuseOpts: # search
+        isCaseSensitive: false
+        shouldSort: true
+        location: 0
+        distance: 1000
+        threshold: 0.4
+        minMatchCharLength: 0
+        keys: ["title", "permalink", "summary", "content"]

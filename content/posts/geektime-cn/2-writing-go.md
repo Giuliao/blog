@@ -56,7 +56,7 @@ tags: ["geektime-cn"]
     - sum%：是从上到当前行所有函数累加使用 CPU 的比例
     - cum：这个函数以及子函数运行所占用的时间，应该大于等于flat
     - cum%：这个函数以及子函数运行所占用的比例，应该大于等于flat%
-- linux top 指标中的含义（[参考](https://www.jianshu.com/p/af584c5a79f2))）
+- linux top 指标中的含义（[参考](https://www.jianshu.com/p/af584c5a79f2)）
 
 ### 7. kubernetes 中如何使用 Go 语言
 
