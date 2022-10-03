@@ -1,5 +1,32 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Posts on Giuliao</title><link>https://giuliao.github.io/blog/posts/</link><description>Recent content in Posts on Giuliao</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 24 Sep 2022 22:58:56 +0800</lastBuildDate><atom:link href="https://giuliao.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>模块二：编写Go程序</title><link>https://giuliao.github.io/blog/posts/geektime-cn/2-writing-go/</link><pubDate>Sat, 24 Sep 2022 22:58:56 +0800</pubDate><guid>https://giuliao.github.io/blog/posts/geektime-cn/2-writing-go/</guid><description>笔记 1. 线程加锁 sync.Mutex：Lock()加锁，Unlock()解锁 sync.RWMutex：不限制读，只限制并发写和并发读写 sync.WaitGroup：等待一组 goroutine 返回 sync.Once：保证某段代码只执行一次 sync.Cond：让一组 goroutine 在满足特定条件时被唤醒 2. 线程调度 进程和线程间共享 Memory Manage、fs、files、signal 调用线程不需要切换上下文，但仍然涉及系统调用 用户态线程解决了系统调用问题，Go 语言基于 GMP 实现用户态线程 3. Go 语言内存管理 4. 包引用与依赖管理，Makefile 项目编译 go mod replace 用法，使用原始 import 路径，替换源为私有地址
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Giuliao</title>
+    <link>https://giuliao.github.io/blog/posts/</link>
+    <description>Recent content in Posts on Giuliao</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 24 Sep 2022 22:58:56 +0800</lastBuildDate><atom:link href="https://giuliao.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>模块二：编写Go程序</title>
+      <link>https://giuliao.github.io/blog/posts/geektime-cn/2-writing-go/</link>
+      <pubDate>Sat, 24 Sep 2022 22:58:56 +0800</pubDate>
+      
+      <guid>https://giuliao.github.io/blog/posts/geektime-cn/2-writing-go/</guid>
+      <description>笔记 1. 线程加锁 sync.Mutex：Lock()加锁，Unlock()解锁 sync.RWMutex：不限制读，只限制并发写和并发读写 sync.WaitGroup：等待一组 goroutine 返回 sync.Once：保证某段代码只执行一次 sync.Cond：让一组 goroutine 在满足特定条件时被唤醒 2. 线程调度 进程和线程间共享 Memory Manage、fs、files、signal 调用线程不需要切换上下文，但仍然涉及系统调用 用户态线程解决了系统调用问题，Go 语言基于 GMP 实现用户态线程 3. Go 语言内存管理 4. 包引用与依赖管理，Makefile 项目编译 go mod replace 用法，使用原始 import 路径，替换源为私有地址
 makefile
-root: export ROOT=github.com/cncamp/golang; .PHONY: root release: echo &amp;#34;building httpserver binary&amp;#34; mkdir -p bin/amd64 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/amd64 . .PHONY: release 5. 动手编写一个 HTTP Server Go httpserver 底层实现（参考） 6. Go 语言调试 go 专属调试工具 dlv</description></item><item><title>模块一：Go 语言特性</title><link>https://giuliao.github.io/blog/posts/geektime-cn/1-golang-chara/</link><pubDate>Sat, 17 Sep 2022 22:58:56 +0800</pubDate><guid>https://giuliao.github.io/blog/posts/geektime-cn/1-golang-chara/</guid><description>作业 课后练习 1.1 编写一个小程序： 给定一个字符串数组 [“I”,“am”,“stupid”,“and”,“weak”] 用 for 循环遍历该数组并修改为 [“I”,“am”,“smart”,“and”,“strong”]
+root: export ROOT=github.com/cncamp/golang; .PHONY: root release: echo &amp;#34;building httpserver binary&amp;#34; mkdir -p bin/amd64 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/amd64 . .PHONY: release 5. 动手编写一个 HTTP Server Go httpserver 底层实现（参考） 6. Go 语言调试 go 专属调试工具 dlv</description>
+    </item>
+    
+    <item>
+      <title>模块一：Go 语言特性</title>
+      <link>https://giuliao.github.io/blog/posts/geektime-cn/1-golang-chara/</link>
+      <pubDate>Sat, 17 Sep 2022 22:58:56 +0800</pubDate>
+      
+      <guid>https://giuliao.github.io/blog/posts/geektime-cn/1-golang-chara/</guid>
+      <description>作业 课后练习 1.1 编写一个小程序： 给定一个字符串数组 [“I”,“am”,“stupid”,“and”,“weak”] 用 for 循环遍历该数组并修改为 [“I”,“am”,“smart”,“and”,“strong”]
 func main() { initArr := []string{&amp;#34;I&amp;#34;, &amp;#34;am&amp;#34;, &amp;#34;stupid&amp;#34;, &amp;#34;and&amp;#34;, &amp;#34;weak&amp;#34;} for i, v := range initArr { if v == &amp;#34;stupid&amp;#34; { initArr[i] = &amp;#34;smart&amp;#34; } if v == &amp;#34;weak&amp;#34; { initArr[i] = &amp;#34;strong&amp;#34; } } fmt.Println(strings.Join(initArr, &amp;#34; &amp;#34;)) } 课后练习 1.2 基于 Channel 编写一个简单的单线程生产者消费者模型：
-队列：队列长度 10，队列元素类型为 int 生产者：每 1 秒往队列中放入一个类型为 int 的元素，队列满时生产者可以阻塞 消费者：每一秒从队列中获取一个元素并打印，队列为空时消费者阻塞 func main() { que := make(chan int, 10) ticker := time.</description></item></channel></rss>
+队列：队列长度 10，队列元素类型为 int 生产者：每 1 秒往队列中放入一个类型为 int 的元素，队列满时生产者可以阻塞 消费者：每一秒从队列中获取一个元素并打印，队列为空时消费者阻塞 func main() { que := make(chan int, 10) ticker := time.</description>
+    </item>
+    
+  </channel>
+</rss>
