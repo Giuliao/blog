@@ -5,7 +5,24 @@
     <link>https://giuliao.github.io/blog/</link>
     <description>Recent content on Giuliao</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 24 Sep 2022 22:58:56 +0800</lastBuildDate><atom:link href="https://giuliao.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Oct 2022 11:15:25 +0800</lastBuildDate><atom:link href="https://giuliao.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>模块三：Docker核心技术</title>
+      <link>https://giuliao.github.io/blog/posts/geektime-cn/3-docker-tech/</link>
+      <pubDate>Tue, 04 Oct 2022 11:15:25 +0800</pubDate>
+      
+      <guid>https://giuliao.github.io/blog/posts/geektime-cn/3-docker-tech/</guid>
+      <description>1.从系统架构谈起 微服务改造 除了遵循分离微服务的方法建议，也要从公司的人力成本，维护团队管辖的功能范围进行考虑拆分
+微服务间通讯 点对点通讯 使用api网关统一管理访问（包含身份认证、鉴权能力） 2.理解Docker 3.Docker核心技术 4.容器网络 5.Dockerfile的最佳实践 多段构建
+docker常用指令
+from as &amp;hellip; run add：从源地址复制到目的地址，add会做解压缩操作 copy：从源地址 课后练习 3.1 Memory 子系统练习
+在 cgroup memory 子系统目录中创建目录结构
+cd /sys/fs/cgroup/memory mkdir memorydemo cd memorydemo 运行 malloc（在 linux 机器 make build）
+查看内存使用情况
+watch &amp;#39;ps -aux|grep malloc|grep -v grep‘ 通过 cgroup 限制 memory
+把进程添加到 cgroup 进程配置组 echo ps -ef|grep malloc |grep -v grep|awk ‘{print $2}’ &amp;gt; cgroup.procs 设置 memory.limit_in_bytes echo 104960000 &amp;gt; memory.limit_in_bytes 等待进程被 oom kill</description>
+    </item>
+    
     <item>
       <title>模块二：编写Go程序</title>
       <link>https://giuliao.github.io/blog/posts/geektime-cn/2-writing-go/</link>
