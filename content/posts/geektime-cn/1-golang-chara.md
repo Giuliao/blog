@@ -42,6 +42,7 @@ func main() {
 - 消费者：每一秒从队列中获取一个元素并打印，队列为空时消费者阻塞
 
 ```go
+
 func main() {
 	que := make(chan int, 10)
 	ticker := time.NewTicker(time.Second)

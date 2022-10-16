@@ -64,7 +64,7 @@ tags: ["geektime-cn"]
 
 - 将练习 1.2 中的生产者消费者模型修改为多个生产者和多个消费者模式
   ```go
-    	que := make(chan int, 10)
+      que := make(chan int, 10)
       ticker := time.NewTicker(time.Second)
       ctx, cancel := context.WithCancel(context.Background())
       wg := sync.WaitGroup{}
@@ -198,8 +198,19 @@ func main() {
 
 	http.HandleFunc("/healthz", interceptor(func(w http.ResponseWriter, r *http.Request) {
 		// 4. 当访问 localhost/healthz 时，应返回 200
-		w.WriteHeader(http.StatusBadRequest)
+		w.WriteHeader(http.StatusOK)
 	}))
 	http.ListenAndServe(":3000", nil)
 }
+```
+
+makefile
+```bash
+run:
+	go run main.go -logtostderr true
+.PHONY: run
+```
+执行代码
+```bash
+make run
 ```
