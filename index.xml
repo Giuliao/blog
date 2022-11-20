@@ -47,5 +47,27 @@ func main() { initArr := []string{&amp;#34;I&amp;#34;, &amp;#34;am&amp;#34;, &am
     
     
     
+    <item>
+      <title>模块八：生命周期管理和服务发现</title>
+      <link>https://giuliao.github.io/blog/posts/geektime-cn/8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://giuliao.github.io/blog/posts/geektime-cn/8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
+      <description>1.深入理解pod的生命周期 2.服务发现 3.Service对象 Service类型:
+ClusterIP NodePort LoadBalancer Headless ExternalName Service的拓扑支持
+4.kube-proxy组件 iptables相关命令
+iptables -L -d nat #查看nat类型的iptables规则 iptables-save -t nat # 查看在本机执行过的iptable命令 iptable切换ipvs的操作
+企业外部访问k8s内部服务方案：
+创建dns记录指向内部loadbalancer的vip 5.DNS原理和实践 6.Ingress对象 7.案例分享 课后作业 第一部分 作业要求：编写 Kubernetes 部署脚本将 httpserver 部署到 Kubernetes 集群，以下是你可以思考的维度。
+完整yaml脚本点击链接 完整http server代码点击链接
+1. 优雅启动
+主要体现在存活探针，可参见4探活部分
+2. 优雅终止
+主要分为两部分，容器脚本处理，httpserver代码逻辑处理。
+在部署的deployment里面设置preStop lifecycle. 主要为shell脚本循环调用killall 确保进程已被kill。killall比起kill的优势在于，应用被kill返回0未被kill返回1.
+lifecycle: preStop: exec: command: [ &amp;#34;/bin/sh&amp;#34;,&amp;#34;-c&amp;#34;,&amp;#34;while killall /bin/server; do sleep 1; done&amp;#34; ] 应用的优雅关闭代码如下，具体解释请参考注释：
+func gracefullyExit(server *http.Server) { ctx, cancel := context.</description>
+    </item>
+    
   </channel>
 </rss>
