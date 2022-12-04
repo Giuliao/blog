@@ -5,7 +5,40 @@
     <link>https://giuliao.github.io/blog/tags/geektime-cn/</link>
     <description>Recent content in geektime-cn on Giuliao</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 04 Oct 2022 11:15:25 +0800</lastBuildDate><atom:link href="https://giuliao.github.io/blog/tags/geektime-cn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Dec 2022 15:15:25 +0800</lastBuildDate><atom:link href="https://giuliao.github.io/blog/tags/geektime-cn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>模块十：kubernetes的生产化运维</title>
+      <link>https://giuliao.github.io/blog/posts/geektime-cn/10-kubernetes%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8C%96%E8%BF%90%E7%BB%B4/</link>
+      <pubDate>Sun, 04 Dec 2022 15:15:25 +0800</pubDate>
+      
+      <guid>https://giuliao.github.io/blog/posts/geektime-cn/10-kubernetes%E7%9A%84%E7%94%9F%E4%BA%A7%E5%8C%96%E8%BF%90%E7%BB%B4/</guid>
+      <description>1.镜像仓库的原理与搭建 2.镜像安全 3.基于kubernetes的DevOps 计划、开发、测试、生产运维 git版本管理，镜像版本管理 通过代码变更触发生产部署更新，gitOps 4.基于Github Action、Jenkins的自动化流水线 docker in docker方案
+挂载docker.sock到容器内 使用谷歌的kaniko方案 5.基于声明式API的自动化流水线：Tekton 6.连续交付工具：Argo CD 7.日志收集与分析 日志收集工具Grafana loki 8.构建监控系统 课后练习 本周没有好好实操部署prometheus，只完成过了http server的改造，代码参考孟老师视频内的内容。完整代码链接
+为 HTTPServer 添加 0-2 秒的随机延时； func DelayedHello(w http.ResponseWriter, r *http.Request) { glog.V(4).Info(&amp;#34;entering root handler&amp;#34;) timer := metrics.NewTimer() defer timer.ObserveTotal() user := r.URL.Query().Get(&amp;#34;user&amp;#34;) delay := randRange(0, 2000) // 0～2s的时延 time.Sleep(time.Duration(delay) * time.Millisecond) if user != &amp;#34;&amp;#34; { io.WriteString(w, fmt.Sprintf(&amp;#34;hello [%s]\n&amp;#34;, user)) } else { io.WriteString(w, &amp;#34;hello [stranger]\n&amp;#34;) } io.</description>
+    </item>
+    
+    <item>
+      <title>模块八：生命周期管理和服务发现</title>
+      <link>https://giuliao.github.io/blog/posts/geektime-cn/8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
+      <pubDate>Sun, 20 Nov 2022 15:15:25 +0800</pubDate>
+      
+      <guid>https://giuliao.github.io/blog/posts/geektime-cn/8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
+      <description>1.深入理解pod的生命周期 2.服务发现 3.Service对象 Service类型:
+ClusterIP NodePort LoadBalancer Headless ExternalName Service的拓扑支持
+4.kube-proxy组件 iptables相关命令
+iptables -L -d nat #查看nat类型的iptables规则 iptables-save -t nat # 查看在本机执行过的iptable命令 iptable切换ipvs的操作
+企业外部访问k8s内部服务方案：
+创建dns记录指向内部loadbalancer的vip 5.DNS原理和实践 6.Ingress对象 7.案例分享 课后作业 第一部分 作业要求：编写 Kubernetes 部署脚本将 httpserver 部署到 Kubernetes 集群，以下是你可以思考的维度。
+完整yaml脚本点击链接 完整http server代码点击链接
+1. 优雅启动
+主要体现在存活探针，可参见4探活部分
+2. 优雅终止
+主要分为两部分，容器脚本处理，httpserver代码逻辑处理。
+在部署的deployment里面设置preStop lifecycle. 主要为shell脚本循环调用killall 确保进程已被kill。killall比起kill的优势在于，应用被kill返回0未被kill返回1.
+lifecycle: preStop: exec: command: [ &amp;#34;/bin/sh&amp;#34;,&amp;#34;-c&amp;#34;,&amp;#34;while killall /bin/server; do sleep 1; done&amp;#34; ] 应用的优雅关闭代码如下，具体解释请参考注释：
+func gracefullyExit(server *http.Server) { ctx, cancel := context.</description>
+    </item>
+    
     <item>
       <title>模块三：Docker核心技术</title>
       <link>https://giuliao.github.io/blog/posts/geektime-cn/3-docker-tech/</link>
@@ -43,28 +76,6 @@ root: export ROOT=github.com/cncamp/golang; .PHONY: root release: echo &amp;#34;
       <description>作业 课后练习 1.1 编写一个小程序： 给定一个字符串数组 [“I”,“am”,“stupid”,“and”,“weak”] 用 for 循环遍历该数组并修改为 [“I”,“am”,“smart”,“and”,“strong”]
 func main() { initArr := []string{&amp;#34;I&amp;#34;, &amp;#34;am&amp;#34;, &amp;#34;stupid&amp;#34;, &amp;#34;and&amp;#34;, &amp;#34;weak&amp;#34;} for i, v := range initArr { if v == &amp;#34;stupid&amp;#34; { initArr[i] = &amp;#34;smart&amp;#34; } if v == &amp;#34;weak&amp;#34; { initArr[i] = &amp;#34;strong&amp;#34; } } fmt.Println(strings.Join(initArr, &amp;#34; &amp;#34;)) } 课后练习 1.2 基于 Channel 编写一个简单的单线程生产者消费者模型：
 队列：队列长度 10，队列元素类型为 int 生产者：每 1 秒往队列中放入一个类型为 int 的元素，队列满时生产者可以阻塞 消费者：每一秒从队列中获取一个元素并打印，队列为空时消费者阻塞 func main() { que := make(chan int, 10) ticker := time.</description>
-    </item>
-    
-    <item>
-      <title>模块八：生命周期管理和服务发现</title>
-      <link>https://giuliao.github.io/blog/posts/geektime-cn/8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://giuliao.github.io/blog/posts/geektime-cn/8-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0/</guid>
-      <description>1.深入理解pod的生命周期 2.服务发现 3.Service对象 Service类型:
-ClusterIP NodePort LoadBalancer Headless ExternalName Service的拓扑支持
-4.kube-proxy组件 iptables相关命令
-iptables -L -d nat #查看nat类型的iptables规则 iptables-save -t nat # 查看在本机执行过的iptable命令 iptable切换ipvs的操作
-企业外部访问k8s内部服务方案：
-创建dns记录指向内部loadbalancer的vip 5.DNS原理和实践 6.Ingress对象 7.案例分享 课后作业 第一部分 作业要求：编写 Kubernetes 部署脚本将 httpserver 部署到 Kubernetes 集群，以下是你可以思考的维度。
-完整yaml脚本点击链接 完整http server代码点击链接
-1. 优雅启动
-主要体现在存活探针，可参见4探活部分
-2. 优雅终止
-主要分为两部分，容器脚本处理，httpserver代码逻辑处理。
-在部署的deployment里面设置preStop lifecycle. 主要为shell脚本循环调用killall 确保进程已被kill。killall比起kill的优势在于，应用被kill返回0未被kill返回1.
-lifecycle: preStop: exec: command: [ &amp;#34;/bin/sh&amp;#34;,&amp;#34;-c&amp;#34;,&amp;#34;while killall /bin/server; do sleep 1; done&amp;#34; ] 应用的优雅关闭代码如下，具体解释请参考注释：
-func gracefullyExit(server *http.Server) { ctx, cancel := context.</description>
     </item>
     
   </channel>
